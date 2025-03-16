@@ -10,4 +10,21 @@
 # На вход подаётся целочисленный массив и число. На выходе - индекс элемента или -1, 
 # в случае если искомого элемента нет в массиве.
 
-def binary_search 
+def binary_search(arr, target, left, right):
+    if left > right:  
+        return -1
+    mid = left + (right - left) // 2 
+
+    if arr[mid] == target: 
+        return mid  
+    elif arr[mid] < target: 
+        return binary_search(arr, target, mid + 1, right)  
+    else: 
+        return binary_search(arr, target, left, mid - 1)  
+
+arr = [2, 6, 9, 22, 34, 38, 59, 80, 100]
+result = binary_search( arr, 7, 0, len(arr) - 1)
+if result == -1:
+    print("Элемент не найден")
+else:
+    print(f"Индекс элемента {result}")
